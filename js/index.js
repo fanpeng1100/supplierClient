@@ -128,7 +128,7 @@ run(['$rootScope', '$location', function($rootScope, $location) {
 		}
 	}).service('cpjAjax', function($http, $rootScope) {
 		this.ajax = function(obj) {
-			$rootScope.baseUrl = '/custom';
+			$rootScope.baseUrl = 'http://shangjia.chengpinjia.com/custom';
 			var debugs = true;
 			var defaults = {
 				method: "POST",
