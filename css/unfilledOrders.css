@@ -1,0 +1,51 @@
+.orderlist_wrap{width: 100%;border: 1px solid #ccc;box-sizing:border-box;margin-top: 20px;padding: 20px;}
+.orderlist_wrap h3{color: #666;margin: 8px 0px 8px 16px;}
+#page{display: flex;justify-content: center;}
+.order-table .layui-btn+.layui-btn{margin-left: 0px;margin-top: 10px;}
+.order-table .layui-btn{display: block;}
+.order-table th,.order-table td{text-align: center;}
+/*详情*/
+.details{/*width: 100%;*/border: 1px solid #CCCCCC;overflow: hidden;padding: 10px 20px;margin-bottom: 20px;}
+.details_info{padding: 20px;}
+
+.person_info{padding-left: 20px;margin-top: 10px;}
+.person_info span:first-child{margin-right:15px;}
+.info_wrap{display: flex;justify-content: space-between;flex-wrap: nowrap;flex-direction: row;}
+.info_wrap ul li{margin-top: 10px;padding-left: 20px;}
+.btn_box{text-align: right;}
+
+
+/*发货弹出框*/
+.layui-layer-demo .layui-layer-btn .layui-layer-btn0{background: #009688;border-color:#009688;}
+.layui-layer-demo .layui-form-select dl dd.layui-this{background-color:#009688;}
+.layui-layer-demo form{margin-top: 20px;}
+.layui-layer-demo .layui-form-select dl{height: 120px;}
+.layui-layer-demo.layui-layer-page .layui-layer-content{overflow: hidden;}
+/*.layui-layer-demo .layui-input:hover,.layui-layer-demo .layui-textarea:hover{border-color: #009688 !important;}*/
+.error{color: red;position: absolute;}
+.layui-layer-demo .layui-form-item{margin-bottom: 24px;}
+
+/*物流信息*/
+.logistics_wrap{/*width: 100%;*/margin-top: 20px;display: flex;justify-content:flex-start;}
+.logistics_name{width: 30%;min-height: 200px;text-align: center;padding-top: 20px;border-right: 1px solid #CCCCCC;}
+.logistics_name h3{margin-bottom: 10px;}
+.logistics_name p{margin-bottom: 10px;}
+.logistics_img{width: 100px;height: 100px;margin: 0px auto;}
+.logistics_img img{width: 100%;height: 100%;}
+.logistics_info{width: 70%;min-height: 200px;padding-top: 20px;padding-left: 20px;}
+.logistics_info li{margin-bottom: 10px;}
+.logistics_notes{width: 70%;min-height: 200px;padding-top: 20px;padding-left: 20px;}
+.logistics_notes li{margin-bottom: 10px;}
+/*暂无数据*/
+.detail_zwsj{width: 100%;text-align: center;}
+.noDataTips{text-align: center;}
+
+
+/*备注*/
+.mybeizhu{
+	resize: none;
+}
+.layui-form-item .layui-input-block {
+    width: 190px;
+    margin-right: 10px;
+}

@@ -1,0 +1,393 @@
+body{
+	overflow-x: hidden;
+}
+em,i{
+	font-style: normal;
+}
+.layui-elem-quote{
+	margin-bottom: 30px;
+}
+.layui-elem-quote em{
+	float: right;
+	margin-right: 20px;
+}
+.layui-elem-quote em button{position: relative;top: -4px;}
+/*侧边导航*/
+
+.leftNav {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 180px;
+	height: 100%;
+}
+
+.leftNav .logo {
+	box-sizing: border-box;
+	width: 100%;
+	height: 45px;
+	background: #393D49;
+	text-align: center;
+	box-shadow: 0 3px 0 0 #5FB878;
+	color: #F2F2F2;
+	font-size: 18px;
+	line-height: 45px;
+	padding-left: 3px;
+}
+.leftNav .logo img {
+	width: 35px;
+	margin-right:10px;
+}
+
+.layui-nav-tree.layui-nav-side {
+	position: absolute;
+	top: 48px;
+	width: 100%;
+}
+.layui-nav-tree.layui-nav-side i.iconfont {
+	font-size: 20px;
+	margin-right: 5px;
+}
+
+.layui-nav-tree.layui-nav-side .layui-icon {
+	font-size: 22px;
+	margin-right: 5px;
+}
+
+
+
+
+/*右侧主内容区*/
+
+.container {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: calc(100% - 180px);
+	min-height: 100%;
+}
+
+.topNav {
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: calc(100% - 180px);
+	height: 45px;
+	background: #393D49;
+	box-sizing: border-box;
+	box-shadow: 0 3px 0 0 #5FB878;
+	z-index: 1000;
+}
+.topNav .title{
+	position: absolute;
+	left: 30px;
+	top: 10px;
+	color: #F0F0F0;
+	font-size: 18px;
+}
+.container .layui-nav {
+	position: absolute;
+	right: 30px;
+	width: 250px;
+	border-radius: 0;
+}
+.container .layui-nav .layui-nav-item{
+	line-height: 45px;
+}
+.container .layui-nav .layui-nav-item .layui-nav-more{
+	top: 19px;
+}
+@keyframes mainVeiw{
+	0%{
+		transform: translateX(100px);
+	}
+	100%{
+		transform: translateX(0);
+	}
+}
+@-webkit-keyframes mainVeiw{
+	0%{
+		-webkit-transform: translateX(100px);
+	}
+	100%{
+		-webkit-transform: translateX(0);
+	}
+}
+.container .mainView {
+	position: absolute;
+	top: 60px;
+	right: 0;
+	width: 100%;
+	min-height: calc(100% - 60px);
+	padding: 20px 50px;
+	box-sizing: border-box;
+}
+.container .mainView.open{
+			animation: mainVeiw .3s ease-out 0s 1;
+	-webkit-animation: mainVeiw .3s ease-out 0s 1;
+}
+.container .mainView .chaxunBtn{
+	display: inline-block;
+	margin-left: 15px;
+}
+.container .mainView .chaxunBtn+.layui-inline{
+	margin-top: 20px;
+}
+.container .mainView .scForm,
+.container .mainView .dataBox{
+	position: relative;
+	box-sizing: border-box;
+	width: 100%;
+	border: 1px solid #ccc;
+	padding: 30px 20px;
+	margin-bottom: 30px;
+}
+.container .mainView .dataBox{
+	padding:20px;
+}
+
+.container .mainView .scDateTime{
+	position: absolute;
+	right: 5px;
+	top: 6px;
+	display: inline-block;
+	font-size: 22px;
+}
+.container .mainView .scForm .layui-input-inline{
+	width: 185px;
+}
+.dataTable thead th,
+.dataTable tbody td{
+	text-align: center;
+}
+/*退换货详情页*/
+.selectLogistics{
+	margin-bottom: 30px;
+}
+.selectLogistics button{
+	margin-left: 60px;
+	width: 106px;
+}
+.selectLogistics input{
+	width: 293px;
+}
+.handleCommentsArea{
+	width: 700px;
+	resize: none;
+	height: 150px;
+}
+/*处理意见*/
+.handleComments{
+	margin-bottom: 30px;
+}
+.handleComments .btnBox{
+	margin-left: 50px;
+}
+.handleComments button{
+	display: block;
+}
+.handleComments button:first-of-type{
+	margin-left: 10px;
+	width: 106px;
+	margin-bottom: 10px;
+}
+/*处理结果*/
+.processingDynamics{
+	box-sizing: border-box;
+	width: 100%;
+	padding: 20px;
+	margin: 30px 0;
+}
+.processingDynamics li{
+	position: relative;
+	margin-bottom: 20px;
+	min-height:38px;
+}
+.processingDynamics li:after{
+	content: '';
+	clear: both;
+}
+.processingDynamics label{
+	display: inline-block;
+	height: 100%;
+	margin-left: 5px;
+	margin-bottom: 30px;
+}
+.processingDynamics label em{
+	margin-left: 30px;
+}
+.processingDynamics .checkResult{
+	box-sizing: border-box;
+	margin-bottom: 10px;
+	margin-left: 84px;
+	width: 100%;
+}
+.processingDynamics .checkDest,
+.processingDynamics .checktimeP{
+	display: inline-block;
+}
+.processingDynamics .checkDest{
+	width: 60%;
+	margin-left: 84px;
+}
+.processingDynamics .checktimeP{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 205px;
+	text-align: right;
+}
+/*退换货原因和图片*/
+.returnImgbox{
+	width:100%;
+	height: 200px;
+	margin: 30px 0;
+}
+.returnImgbox .left{
+	float: left;
+	width: 30%;
+	height: 100%;
+}
+.returnImgbox .left .title{
+	margin-bottom: 20px;
+}
+.returnImgbox .left .returnReason{
+	padding: 0 15px;
+}
+.returnImgbox .right{
+	width: 70%;
+	float: right;
+	height: 100%;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+.returnImgbox .right p{
+	padding: 0 20px;
+	margin: 8px 0;
+}
+.returnImgbox .right .imgList{
+	width: 100%;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-around;
+}
+.returnImgbox .right .imgList li{
+	width: 140px;
+	height: 140px;
+	margin: 0 5px;
+	box-sizing: border-box;
+	border: 1px solid #F0F0F0;
+	transition: all .3s;
+}
+.returnImgbox .right .imgList li:hover{
+	box-shadow: 0 0 6px 1px #999;
+}
+.returnImgbox .right .imgList li img{
+	width: 100%;
+	height: 100%;
+}
+/*物流信息*/
+.logisticsInfo{
+	position: relative;
+	width: 100%;
+	min-height: 300px;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	margin-top: 30px;
+}
+.logisticsInfo:after{
+	content: '';
+	position: absolute;
+	left: 30%;
+	top: 0;
+	width: 1px;
+	height: 100%;
+	background: #ccc;	
+	
+}
+.logisticsInfo .left{
+	flex: 1;
+	
+}
+.logisticsInfo .left .imgBox{
+	border: 1px solid #F0F0F0;
+	width: 150px;
+	height: 150px;
+	margin: 10px auto;
+}
+.logisticsInfo .left .imgBox img{
+	width: 100%;
+	height: 100%;
+}
+.logisticsInfo .left p{
+	width: 100%;
+	text-align: center;
+	margin: 10px 0;
+}
+.logisticsInfo .left p.name{
+	font-size: 16px;
+}
+.logisticsInfo .left p.dateTime{
+	font-size: 13px;
+	color: #666;
+}
+.logisticsInfo .right{
+	flex: 2;
+	padding: 20px;
+}
+.logisticsInfo .right li{
+	margin: 20px 0;
+}
+.logisticsInfo .right li span{
+	position: relative;
+	top: 2px;
+	display: inline-block;
+	height: 100%;
+	font-size: 14px;
+	vertical-align: top;
+}
+.logisticsInfo .right li em{
+	position: relative;
+	left: 20px;
+	display: inline-block;
+	font-size: 14px;
+	width: calc(100% - 120px);
+}
+.listPage{
+	display: flex;
+	display: -webkit-flex;
+	justify-content: flex-end;
+}
+/*确认收货框*/
+.sureReceipt{
+	box-sizing: border-box;
+	width: 100%;
+	padding: 10px 30px;
+	margin-bottom: 30px;
+	border: 1px solid #F0F0F0;
+}
+.sureReceipt:hover{
+	box-shadow: 0 0 3px 1px #ccc;
+}
+.sureReceipt .layui-btn  i.layui-icon{
+	display: inline-block;
+	width: 25px;
+	font-size: 22px;
+}
+.sureReceipt span{
+	font-size: 18px;
+	margin-left: 30px;
+	color: #333;
+}
+/*暂无订单*/
+.noDataTips{
+	text-align: center;
+}
+/*导出弹出框*/
+.exportDialog .layui-layer-btn .layui-layer-btn0{
+	background: rgb(0,150,136);
+	border: 1px solid rgb(0,150,136);
+}

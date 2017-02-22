@@ -1,0 +1,161 @@
+var indexHtml = angular.module('indexHtml', ['ngRoute', 'ng-layer']);
+indexHtml.run(['$rootScope', '$location', function($rootScope, $location) {
+	//监听路由事件
+	$rootScope.$on('$locationChangeStart',function(event, newUrl, currentUrl) {
+		localStorage.setItem("newUrl",newUrl);
+		if(newUrl==currentUrl){
+			//console.log(localStorage.getItem("newUrl"));
+			//$location.path('/unfilledOrdersCtrl/1');
+		}
+	});
+}]);
+
+indexHtml.controller('supplierClientCtrl', function($scope, $rootScope, cpjAjax) {
+		//用户名（手机号）展示
+		var userName = localStorage.getItem("userName");
+		$scope.userName = userName.replace(userName.substring(3, 7), "****");
+		//退出系统
+		$scope.dropOut = function() {
+			localStorage.clear();
+			window.location.href = 'login.html';
+		}
+	})
+	.config(['$routeProvider', function($routeProvider) {
+		$routeProvider
+			.when('/unfilledOrdersCtrl/:type', {
+				templateUrl: './subPage/unfilledOrders.html',
+				controller: "unfilledOrdersCtrl"
+			})
+			.when('/returnOrder/:orderType', {//退换货订单列表
+				templateUrl: './subPage/returnOrder.html',
+				controller: "returnOrderCtrl"
+			})
+			.when('/modifyPassword', {
+				templateUrl: './subPage/modifyPassword.html',
+				controller: "modifyPasswordCtrl"
+			})
+			.when('/returnDetails/:orderId/:orderOneStatus/:orderType', {//退换货订单详情
+				templateUrl: './subPage/returnDetails.html',
+				controller: "returnDetailsCtrl"
+			})
+			.when('/orderDetail/:type/:subOrderId/', {
+				templateUrl: './subPage/orderDetail.html',
+				controller: "orderDetailCtrl"
+			})
+			.when('/orderStatistics', {
+				templateUrl: './subPage/orderStatistics.html',
+				controller: "orderStatisticsCtrl"
+			})
+			.otherwise({
+				redirectTo: '/unfilledOrdersCtrl/1'
+			});
+	}]).directive("screeningconditions", function() {
+		return {
+			restrict: "E",
+			templateUrl: "./subPage/screeningConditions.html",
+			replace: true,
+			link: function($scope, $element, $rootScope, cpjAjax) {
+				document.getElementById("startDateTime").onclick = function() {
+					var self = this;
+					var startDateTime = laydate({
+						elem: self,
+						istime: true,
+						format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+						min: '2016-06-16 23:59:59',
+						max: laydate.now(),
+						start: laydate.now(-2), //开始时间为两天前
+						choose: function(datas) {
+							$scope.order.applyTimeStart = datas;
+						}
+					});
+
+				}
+				document.getElementById("endDateTime").onclick = function() {
+					var self = this;
+					var endDateTime = layui.laydate({
+						elem: self,
+						istime: true,
+						format: 'YYYY-MM-DD hh:mm:ss', //日期格式
+						min: '2016-06-16 23:59:59',
+						max: laydate.now(),
+						start: laydate.now(-2), //开始时间为两天前
+						choose: function(datas) {
+							$scope.order.applyTimeEnd = datas;
+						}
+					});
+
+				}
+			}
+
+		}
+	}).directive("breadcrumbs", function() {
+		var bc = '<div style="margin:20px 0;"><span class="layui-breadcrumb" style="visibility: visible;"></span></div>';
+		return {
+			restrict: "E",
+			template: bc,
+			replace: true,
+			link: function($scope, $element) {
+				for(var i = 0; i < $scope.breadCrumbs.length; i++) {
+					if(i != $scope.breadCrumbs.length - 1) {
+						var span = document.createElement("span");
+						span.setAttribute("class", "layui-box");
+						span.innerHTML = "&gt;";
+						var a = document.createElement("a");
+						a.href = $scope.breadCrumbs[i].url;
+						a.innerHTML = $scope.breadCrumbs[i].name;
+						a.appendChild(span);
+					} else {
+						var cite = document.createElement("cite");
+						var a = document.createElement("a");
+						a.href = 'javascript:;';
+						a.innerHTML = $scope.breadCrumbs[i].name;
+						a.appendChild(cite);
+					}
+					$element[0].childNodes[0].appendChild(a);
+				}
+			}
+		}
+	}).service('cpjAjax', function($http, $rootScope) {
+		this.ajax = function(obj) {
+			$rootScope.baseUrl = '/custom';
+			var debugs = true;
+			var defaults = {
+				method: "POST",
+				headers: {
+					"authorization": localStorage.getItem("authorization"),
+					"user-agents": localStorage.getItem("user-agents")
+				},
+				data: {},
+				success: function() {},
+				error: function(code, msg) {
+					layer.msg(msg);
+				},
+				timeout: function() {}
+			};
+
+			angular.extend(defaults, obj || {});
+
+			$http({
+				url: $rootScope.baseUrl + obj.url,
+				method: defaults.method,
+				headers: defaults.headers,
+				params: defaults.data,
+				timeout: 6000,
+			}).success(function(data) {
+				var code = Number(data.responseHead.code);
+				if(code == 200) {
+					defaults.success(data.responseBody || data);
+				} else if(code < 60000 && code >= 50000) { //业务级别错误
+					defaults.error(data.responseHead.code, data.responseHead.msg);
+				} else if(code < 50000) { //系统级别错误
+					debugs ? console.log(data.responseHead.msg) : null;
+				}
+			}).error(function(xhr, error) {
+				defaults.timeout();
+				if(debugs) {
+					console.log(xhr);
+					console.log("error：" + error);
+				}
+			});
+		}
+	});

@@ -1,0 +1,79 @@
+<breadcrumbs></breadcrumbs>
+<blockquote class="layui-elem-quote">
+	订单号：{{order.subOrderNum}}
+	<em class="ng-binding">{{orderStatus}}</em>
+</blockquote>
+<div class="details details_info">
+	<h3>用户信息：</h3>
+	<div class="person_info">
+		<span>账号：{{order.userPhone}}</span>
+		<span>昵称：{{order.nickname}}</span>
+	</div>
+	<table class="layui-table">
+		<thead>
+			<tr>
+				<th nowrap="nowrap">商品编号</th>
+				<th nowrap="nowrap">商品名称</th>
+				<th nowrap="nowrap">商品图片</th>
+				<th nowrap="nowrap">购买数量</th>
+				<th nowrap="nowrap">商品单价</th>
+				<th nowrap="nowrap">备注</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{order.goodsNum}}</td>
+				<td>{{order.goodsName}}</td>
+				<td><img width="200" ng-src="{{order.pic}}" /></td>
+				<td>{{order.goodsQuantity}}</td>
+				<td>{{order.goodsPriceStr}}</td>
+				<td>{{order.message}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="info_wrap">
+		<ul>
+			<h3>收货人信息：</h3>
+			<li>姓名：{{order.consigneeName}}</li>
+			<li>电话：{{order.mobilePhone}}</li>
+			<li>收货地址：{{order.detailAddress}}</li>
+		</ul>
+		<ul>
+			<h3>付款信息：</h3>
+			<li>订单金额：¥{{order.goodsPriceStr}}元</li>
+			<li>实付金额：¥{{order.realPayStr}}元</li>
+			<li>优惠方式：{{order.favorableInfo}}</li>
+			<li>优惠金额：¥{{order.favorableMoneyStr}}元 会员折扣：{{order.discount}}%</li>
+			<li>会员折扣金额：{{order.discountMoneyStr}}元</li>
+			<li>支付方式：{{order.payChannel==2?"微信支付":"支付宝支付"}}</li>
+			<li>付款时间：{{order.payTimeStr}}</li>
+		</ul>
+		<ul>
+			<h3>发票信息：</h3>
+			<li>发票抬头：{{order.invoiceTitle}}</li>
+			<li>发票类型：{{invoiceType}}</li>
+			<li>发票内容：{{order.invoiceContent}}</li>
+		</ul>
+	</div>
+	<div class="btn_box">
+		<button class="layui-btn" ng-click="fahuo();" ng-show="isShow">发货</button>
+	</div>
+</div>
+<div class="details logistics_wrap" ng-show="!isShow">
+	<div class="logistics_name">
+		<div class="logistics_img">
+			<img src="{{baseImageUrl}}{{wuliuInfo.expressCompanyLogo}}" />
+		</div>
+		<h3>{{order.expressCompanyName}}</h3>
+		<p>物流单号：{{order.expressNum}}</p>
+		<span>发货时间：{{order.deliverTimeStr}}</span>
+	</div>
+	<ul class="logistics_info" ng-show="zwsj">
+		<li ng-repeat="w in wuliuInfo.traces">{{w.acceptTime}}{{w.acceptStation}}</li>
+	</ul>
+	<ul class="logistics_notes" ng-show="zwbz">
+		<li>{{beizhu}}</li>
+	</ul>
+	<div class="detail_zwsj" ng-show="zwsjts">暂时没有物流信息</div>
+	<div class="detail_zwsj" ng-show="zwbzts">暂时没有物流备注</div>
+</div>

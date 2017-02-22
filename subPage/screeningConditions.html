@@ -1,0 +1,39 @@
+<form class="layui-form scForm">
+	<div class="layui-inline">
+		<label class="layui-form-label">订单号：</label>
+		<div class="layui-input-inline">
+			<input name="orderNum" type="text" placeholder="请输入订单号" autocomplete="off" class="layui-input" ng-model="order.orderNum">
+		</div>
+	</div>
+	<div class="layui-inline">
+		<label class="layui-form-label">用户账号：</label>
+		<div class="layui-input-inline">
+			<input name="phone" type="text" placeholder="请输入用户账号" autocomplete="off" class="layui-input" ng-model="order.phone">
+		</div>
+	</div>
+	<div class="layui-inline">
+		<label class="layui-form-label">商品名称：</label>
+		<div class="layui-input-inline">
+			<input name="goodsName" type="text" placeholder="请输入商品名称" autocomplete="off" class="layui-input" ng-model="order.goodsName">
+		</div>
+	</div>
+
+	<div class="chaxunBtn">
+		<button class="layui-btn" ng-click="chaxun();">查询</button>
+	</div>
+
+	<div class="layui-inline">
+		<label class="layui-form-label">{{timeName}}：</label>
+		<div class="layui-input-inline">
+			<input type="text" name="applyTimeStart" ng-model="order.applyTimeStart" readonly="readonly"id="startDateTime" placeholder="请输入开始时间" autocomplete="off" class="layui-input">
+			<i class="layui-icon scDateTime">&#xe60e;</i>
+		</div>
+		<span>至</span>
+		<div class="layui-input-inline">
+			<input type="text" name="applyTimeEnd" ng-model="order.applyTimeEnd" readonly="readonly" id="endDateTime" placeholder="请输入结束时间" autocomplete="off" class="layui-input">
+			<i class="layui-icon scDateTime">&#xe60e;</i>
+		</div>
+	</div>
+	<input name="orderStatus" type="hidden" value="{{orderStatus}}" />
+	<input name="merchantId" type="hidden" value="{{merchantId}}" />
+</form>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app="indexHtml" ng-controller="supplierClientCtrl">
+	<head>
+		<meta charset="utf-8" />
+		<title>成品家商家端</title>
+		<link rel="shortcut icon" type="image/ico" href="img/favicon.ico"/>
+		<link rel="stylesheet" type="text/css" href="lib/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_uefxj7jl5dxqolxr.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/unfilledOrders.css" />
+		<link rel="stylesheet" type="text/css" href="css/modifyPassword.css"/>
+		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_ah9eeg4az1q93sor.css" />
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="//cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+		<script src="//cdn.bootcss.com/angular.js/1.5.8/angular-route.min.js"></script>
+		<script src="lib/ng-layer.js"></script>	
+		<script src="lib/echarts.min.js"></script>
+	</head>
+	<body>
+		<!--侧边导航-->
+		<div class="leftNav">
+			<div class="logo"><img src="img/logo.svg"/><span>成品家</span></div>
+			<ul class="layui-nav layui-nav-tree layui-nav-side" lay-filter="sideNav">
+				<!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+				<li class="layui-nav-item layui-nav-itemed">
+					<a href="javascript:;"><i class="iconfont icon-dingdanguanli"></i>订单管理</a>
+					<dl class="layui-nav-child">
+						<dd class="layui-this">
+							<a href="#/unfilledOrdersCtrl/1">未发货订单</a>
+						</dd>
+						<dd>
+							<a href="#/unfilledOrdersCtrl/2">已发货订单</a>
+						</dd>
+						<dd>
+							<a href="#/unfilledOrdersCtrl/3">已完成订单</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a href="javascript:;"><i class="iconfont icon-tuihuanhuo"></i>退换货管理</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a href="#/returnOrder/7">退货订单</a>
+						</dd>
+						<dd>
+							<a href="#/returnOrder/11">换货订单</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a href="javascript:;"><i class="layui-icon">&#xe629;</i>数据中心</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a href="#/orderStatistics">订单统计</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a href="javascript:;"><i class="layui-icon">&#xe620;</i>安全中心</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a href="#/modifyPassword">修改密码</a>
+						</dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+		<!--右侧内容区-->
+		<div class="container">
+			<div class="topNav">
+				<span class="title">商城商家端后台</span>
+				<ul class="layui-nav">
+					<li class="layui-nav-item">
+						<a href="javascript:;">{{userName}}</a>
+						<!-- 二级菜单 -->
+						<!--<dl class="layui-nav-child">
+							
+							<dd>
+								<a href="#/modifyPassword">修改密码</a>
+							</dd>
+						</dl>-->
+					</li>
+					<li class="layui-nav-item" ng-click="dropOut()">
+						<a href="javascript:;">退出</a>
+					</li>
+				</ul>
+			</div>
+			
+			<!--模板区域-->
+			<div class="mainView open" ng-view></div>
+		</div>
+		
+		<!--控制器-->
+		<script src="js/index.js"></script>
+		<script src="js/unfilledOrdersCtrl.js"></script>
+		<script src="js/returnOrderCtrl.js"></script>
+		<script src="js/modifyPassword.js"></script>
+		<script src="js/orderStatistics.js"></script>
+		<script src="lib/layui/lay/dest/layui.all.js"></script>
+	</body>
+</html>

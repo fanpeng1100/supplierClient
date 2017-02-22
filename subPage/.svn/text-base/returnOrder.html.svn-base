@@ -1,0 +1,59 @@
+<breadcrumbs></breadcrumbs>
+<screeningconditions></screeningconditions>
+<div class="dataBox">
+
+	<blockquote class="layui-elem-quote">订单列表
+		<em>
+			<button class="layui-btn layui-btn-small layui-btn-danger" ng-click="export()">
+				<i class="iconfont icon-daochu"></i>&nbsp;导出
+			</button>
+		</em>
+		<em>
+			<button class="layui-btn layui-btn-small" ng-click="refresh()">
+				<i class="iconfont icon-shuaxin"></i>&nbsp;刷新
+			</button>
+		</em>
+	</blockquote>
+	<table class="layui-table dataTable" ng-if="pageNum">
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>订单号</th>
+				<th style="min-width: 70px;">订单状态</th>
+				<th>用户账号</th>
+				<th style="min-width: 74px;">申请时间</th>
+				<th>商品名称</th>
+				<th>购买<br />数量</th>
+				<th>退货数量</th>
+				<th>收货人/电话</th>
+				<th>收货地址</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in ReturnOrderList">
+				<td>{{($index+1)+pageSize*(pageNum-1)}}</td>
+				<td>{{item.orderNum}}</td>
+				<td>{{item.orderStatusStr}}</td>
+				<td>{{item.userPhone}}</td>
+				<td>{{item.applyTimeStr}}</td>
+				<td>{{item.goodsName}}</td>
+				<td>{{item.goodsQuantity}}</td>
+				<td>{{item.goodsQuantity}}</td>
+				<td>{{item.consigneeName}}/{{item.mobilePhone}}</td>
+				<td>{{item.consigneeAddress}}</td>
+				<td>
+					<!--详情-->
+					<a ng-if="(item.orderStatus!=7&&item.orderStatus!=11&&item.orderStatus!=8)||(item.orderStatus==8&&item.canRecoveredGoods==1)" href="#/returnDetails/{{item.id}}/{{orderOneStatus}}/{{breadName}}" class="layui-btn layui-btn-small layui-btn-normal">详情</a>
+					<!--处理-->
+					<a ng-if="(item.orderStatus==7||item.orderStatus==11)||(item.orderStatus==8&&item.canRecoveredGoods==2)" href="#/returnDetails/{{item.id}}/{{orderOneStatus}}/{{breadName}}" class="layui-btn layui-btn-small layui-btn-danger">处理</a>
+					<!--发货-->
+					<a ng-if="item.orderStatus==12" href="#/returnDetails/{{item.id}}/{{orderOneStatus}}/{{breadName}}" class="layui-btn layui-btn-small layui-btn-danger" style="margin-left: 0;margin-top: 5px;">发货</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div id="returnOrderPages" class="listPage"></div>
+	<div class="noDataTips" ng-if="!pageNum"><img src="./img/zwdd.png" /></div>
+	<input type="hidden" name="" id="" value="" />
+</div>

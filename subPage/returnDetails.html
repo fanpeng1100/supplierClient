@@ -1,0 +1,143 @@
+<breadcrumbs></breadcrumbs>
+
+<div class="dataBox">
+	<!--<blockquote class="layui-elem-quote">{{orderStatus}}/{{canRecoveredGoods}}订单号：{{subOrderNum}}<em>{{orderStatusStr}}</em></blockquote>-->
+	<blockquote class="layui-elem-quote">订单号：{{subOrderNum}}<em>{{orderStatusStr}}</em></blockquote>
+	<!--退款中状态，商家确认收货-->
+	<div class="sureReceipt" ng-if="orderStatus==8&&canRecoveredGoods==2">
+		<button class="layui-btn layui-btn-danger" ng-click="sureReceipt()">
+			<i class="layui-icon">&#xe616;</i>
+			确认收货
+		</button>
+		<span>为了保证用户尽早收到货款，请在问题货物收到之后及时进行确认处理</span>
+	</div>
+	<!--换货中物流公司选择-->
+	<div class="selectLogistics" ng-if="orderStatus==12">
+		<form class="layui-form">
+			<div class="layui-inline">
+				<label class="layui-form-label">物流公司：</label>
+				<div class="layui-input-block">
+					<select lay-verify="required" lay-filter="expressList" name="expressList">
+						<option value="{{ex.id}}" ng-repeat="ex in expressList">{{ex.name}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label">物流单号：</label>
+				<div class="layui-input-block">
+					<input type="number" name="sendExpressNum" ng-model="sendExpressNum" required="required" lay-verify="required" placeholder="请输入订单号" autocomplete="new-password" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-inline">
+				<button type="submit" lay-filter="exSubmit" lay-submit class="layui-btn layui-btn-danger">发货</button>
+			</div>
+		</form>
+	</div>
+	<!--处理意见-->
+	<div class="handleComments" ng-if="orderStatus==7||orderStatus==11">
+		<form class="layui-form">
+			<div class="layui-inline layui-form-text">
+				<label class="layui-form-label">处理意见：</label>
+				<div class="layui-input-block">
+					<textarea placeholder="请输入内容" ng-model="remark" class="layui-textarea handleCommentsArea"></textarea>
+				</div>
+			</div>
+			<div class="layui-inline btnBox">
+				<button class="layui-btn layui-btn-warm" ng-click="handleRe(2)">申请通过</button>
+				<button class="layui-btn layui-btn-danger" ng-click="handleRe(3)">申请不通过</button>
+			</div>
+		</form>
+	</div>
+	<!--处理动态-->
+	<div class="processingDynamics" ng-if="orderStatus!=7&&orderStatus!=11">
+		<label>处理动态：<em>{{verifyStatus}}</em></label>
+		<ul>
+			<li ng-repeat="flag in trendsList">
+				<span class="checkDest">{{flag.processInfo}}</span>
+				<span class="checktimeP"><em>操作人：{{flag.creatorName}}</em><br /><em>处理时间：{{flag.processTimeStr}}</em></span>
+			</li>
+		</ul>
+
+	</div>
+	<!--商品订单信息-->
+	<h3>用户信息：</h3>
+	<div class="person_info">
+		<span>账号：{{userPhone}}</span>
+		<span>昵称：{{nickname}}</span>
+	</div>
+	<table class="layui-table">
+		<thead>
+			<tr>
+				<th nowrap="nowrap">商品编号</th>
+				<th nowrap="nowrap">商品名称</th>
+				<th nowrap="nowrap">商品图片</th>
+				<th nowrap="nowrap">购买数量</th>
+				<th nowrap="nowrap">商品单价</th>
+				<th nowrap="nowrap">备注</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{goodsNum}}</td>
+				<td>{{goodsName}}</td>
+				<td><img width="200" src="{{goodsPic}}" /></td>
+				<td>{{goodsQuantity}}</td>
+				<td>{{goodsPriceStr}}</td>
+				<td>{{message}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="returnImgbox">
+		<div class="left">
+			<p class="title">{{returnTitle}}：</p>
+			<p class="returnReason">{{refundRemark}}</p>
+		</div>
+		<div class="right">
+			<p>上传图片：</p>
+			<ul class="imgList">
+				<li ng-repeat="pic in imgList"><img ng-src="{{baseImageUrl}}{{pic}}" /></li>
+			</ul>
+		</div>
+	</div>
+	<div class="info_wrap">
+		<ul>
+			<h3>收货人信息：</h3>
+			<li>姓名：{{consigneeName}}</li>
+			<li>电话：{{mobilePhone}}</li>
+			<li>收货地址：{{detailAddress}}</li>
+		</ul>
+		<ul>
+			<h3>付款信息：</h3>
+			<li>订单金额：¥{{totalPayStr}}元</li>
+			<li>实付金额：¥{{realPayStr}}元</li>
+			<li>优惠方式：{{favorableInfo}}</li>
+			<li>优惠金额：¥{{favorableMoneyStr}}元 会员折扣：{{discount}}%</li>
+			<li>会员折扣金额：{{discountMoneyStr}}元</li>
+			<li>支付方式：{{payChannel}}</li>
+			<li>付款时间：{{payTimeStr}}</li>
+		</ul>
+		<ul>
+			<h3>发票信息：</h3>
+			<li>发票抬头：{{invoiceTitle}}</li>
+			<li>发票类型：{{invoiceType}}</li>
+			<li>发票内容：{{invoiceContent}}</li>
+		</ul>
+	</div>
+	<!--物流信息-->
+	<div class="logisticsInfo">
+		<div class="left">
+			<div class="imgBox">
+				<img src="{{expressCompanyLogo}}" />
+			</div>
+			<p class="name">{{expressCompanyName}}</p>
+			<p>物流单号：{{expressNum}}</p>
+			<p class="dateTime">发货时间：{{deliverTimeStr}}</p>
+			<p class="dateTime">收货时间：{{confirmTimeStr}}</p>
+		</div>
+		<div class="right">
+			<ul class="logisticsList">
+				<li ng-repeat="flag in traces"><span>{{flag.acceptTime}}</span><em>{{flag.acceptStation}}</em></li>
+			</ul>
+		</div>
+	</div>
+</div>

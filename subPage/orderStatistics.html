@@ -1,0 +1,59 @@
+<breadcrumbs></breadcrumbs>
+<div>
+	<div class="unitshipment">
+		<div class="layui-inline">
+			<label class="layui-form-label">申请时间：</label>
+			<div class="layui-input-inline">
+				<input type="text" ng-model="uintstartDateTime" ng-click="mestartDateTime()" readonly="readonly" id="uintstartDateTime" placeholder="请输入开始时间" autocomplete="off" class="layui-input">
+				<i class="layui-icon scDateTime">&#xe60e;</i>
+			</div>
+			<span style="display:inline-block;padding:0px 5px;">至</span>
+			<div class="layui-input-inline">
+				<input type="text" ng-model="uintendDateTime" ng-click="meendDateTime()" readonly="readonly" id="uintendDateTime" placeholder="请输入结束时间" autocomplete="off" class="layui-input">
+				<i class="layui-icon scDateTime">&#xe60e;</i>
+			</div>
+			<div class="chaxunBtn">
+				<button class="layui-btn" ng-click="unitchaxun();">查询</button>
+			</div>
+		</div>
+		<div id="unitshipment" class="unitstatis"></div>
+	</div>
+	
+	<div class="returnvolume">
+		<div class="layui-inline">
+			<label class="layui-form-label">申请时间：</label>
+			<div class="layui-input-inline">
+				<input type="text" ng-model="returnSDateTime" readonly="readonly" ng-click="returnstartDateTime()" id="returnstartDateTime" placeholder="请输入开始时间" autocomplete="off" class="layui-input">
+				<i class="layui-icon scDateTime">&#xe60e;</i>
+			</div>
+			<span style="display:inline-block;padding:0px 5px;">至</span>
+			<div class="layui-input-inline">
+				<input type="text" ng-model="returnEDateTime" readonly="readonly" ng-click="returnendDateTime()" id="returnendDateTime" placeholder="请输入结束时间" autocomplete="off" class="layui-input">
+				<i class="layui-icon scDateTime">&#xe60e;</i>
+			</div>
+			<div class="chaxunBtn">
+				<button class="layui-btn" ng-click="returnchaxun();">查询</button>
+			</div>
+		</div>
+		<div id="returnvolume" class="unitstatis"></div>
+	</div>
+	
+	<div class="exchange ">
+		<div class="layui-inline">
+			<label class="layui-form-label">申请时间：</label>
+			<div class="layui-input-inline">
+				<input type="text" ng-model="exchangeSDateTime" readonly="readonly" ng-click="exchangestartDateTime()" id="exchangestartDateTime" placeholder="请输入开始时间" autocomplete="off" class="layui-input">
+				<i class="layui-icon scDateTime">&#xe60e;</i>
+			</div>
+			<span style="display:inline-block;padding:0px 5px;">至</span>
+			<div class="layui-input-inline">
+				<input type="text" ng-model="exchangeEDateTime" readonly="readonly" ng-click="exchangeendDateTime()" id="exchangeendDateTime" placeholder="请输入结束时间" autocomplete="off" class="layui-input">
+				<i class="layui-icon scDateTime">&#xe60e;</i>
+			</div>
+			<div class="chaxunBtn">
+				<button class="layui-btn" ng-click="exchangechaxun();">查询</button>
+			</div>
+		</div>
+		<div id="exchange" class="unitstatis"></div>
+	</div>
+</div>

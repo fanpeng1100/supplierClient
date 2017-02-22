@@ -1,0 +1,30 @@
+<form class="layui-form" action="" name="myForm" novalidate>
+	<div class="layui-form-item">
+		<label class="layui-form-label">物流公司：</label>
+		<div class="layui-input-inline">
+			<select required name="kuaidi" lay-filter="kuaidi" ng-model="kuaidi">
+				<option value="">请选择</option>
+				<option ng-repeat="list in wulist" value="{{list.id}}" ng-model="kId">{{list.name}}</option>
+			</select>
+			<span class="error" ng-show="submited&&myForm.kuaidi.$invalid">
+				<span ng-show="myForm.kuaidi.$error.required">请选择物流公司</span>
+			</span>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">物流单号：</label>
+		<div class="layui-input-inline">
+			<input type="tel" name="danhao" lay-verify="danhao" autocomplete="off" ng-pattern="/^[0-9]*$/" class="layui-input" required ng-model="danhao">
+			<span class="error" ng-show="submited&&myForm.danhao.$invalid">
+				<span ng-show="myForm.danhao.$error.required">请填写物流单号</span>
+			<span ng-show="myForm.danhao.$error.pattern">物流单号为数字</span>
+			</span>
+		</div>
+	</div>
+	<div class="layui-form-item layui-form-text">
+		<label class="layui-form-label">物流备注：</label>
+		<div class="layui-input-block">
+			<textarea ng-model="mytext" name="mytext" placeholder="请输入内容" class="layui-textarea mybeizhu" id="mybeizhu"></textarea>
+		</div>
+	</div>
+</form>
